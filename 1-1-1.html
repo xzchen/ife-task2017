@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义checkbox， radio样式</title>
+</head>
+<body>
+	
+	<style type="text/css">
+		input {
+			display: none;
+		}
+		#radio1+label,
+		#radio2+label,
+		#checkbox1+label {
+			display: inline-block;
+			width: 14px;
+			height: 14px;
+			border:1px solid #ccc;
+		}
+		#radio1:checked+label,
+		#radio2:checked+label,
+		#checkbox1:checked+label {
+			border:1px solid red;
+
+		}
+
+		#radio1 + label,
+		#radio2 + label {
+			border-radius: 50%;
+		}
+		input:checked + label::after {
+			position: relative;
+			display: block;
+		}
+		#radio1:checked + label::after,
+		#radio2:checked + label::after  {
+		 	background: red;
+		 	width: 6px;
+		 	height: 6px;
+			border-radius:50%;
+			top: 4px;
+			left: 4px;
+			content: "";
+		}
+
+		#checkbox1:checked + label::after {
+			content:"✔";
+			position: relative;
+			width: 4px;
+			height: 4px;
+			color:red;
+			top:-3px;
+			left: 1px;
+		}
+
+
+	</style>
+	<h3>CSS实现</h3>
+	<form>
+	<input type="radio" name="sex"  id="radioBox" class="radios">
+		<input type="radio" name="job" id="radio1" class="radio">
+		<label for="radio1"></label>
+		<input type="radio" name="job" id="radio2" class="radio">
+		<label for="radio2"></label>
+		<input type="checkbox" name="" class="checkbox" id="checkbox1">
+		<label for="checkbox1"></label>
+	</form>
+	
+	<style type="text/css">
+		#radio3 + label, 
+		#radio4 + label,
+		#checkbox2 + label {
+			display: inline-block;
+			width: 17px;
+			height: 17px;
+		}
+		#radio3 + label,
+		#radio4 + label {
+			background: url(image/checkbox-radio.png);
+			background-position: 0px 0px;
+		}
+		#radio3:checked + label,
+		#radio4:checked + label {
+			background: url(image/checkbox-radio.png);
+			background-position: 17px 0px;
+		}
+		#checkbox2 + label {
+			background: url(image/checkbox-radio.png);
+			background-position: 0px 16px;
+		}
+		#checkbox2:checked + label {
+			background: url(image/checkbox-radio.png);
+			background-position: 17px 17px;
+		}
+	</style>
+	<h3>背景图实现</h3>
+	<input type="radio" name="radio" id="radio3" class="radio">
+	<label for="radio3"></label>
+	<input type="radio" name="radio" id="radio4" class="radio">
+	<label for="radio4"></label>
+	<input type="checkbox" name="checkbox" id="checkbox2">
+	<label for="checkbox2"></label>
+</body>
+</html>

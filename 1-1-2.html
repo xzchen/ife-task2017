@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义网页右键菜单</title>
+</head>
+<style type="text/css">
+	h3 {
+		position: fixed;
+		left: 50px;
+		top: 100px;
+	}
+	#contextmenu {
+		display: none;
+		position: fixed;
+		left: 200px;
+		width: 250px;
+		border:1px solid #ccc;
+		border-radius:.25rem;
+		text-align: center;
+		box-shadow: 3px 3px 6px #d7d7d7;
+		background: #fff;
+	}
+
+	#contextmenu h4 {
+		border-bottom: 1px solid #d7d7d7;
+		padding: 1rem;
+		margin:0;
+	}
+	h4:hover {
+		background-color: #ccc;
+	}
+</style>
+<body style="height: 2000px;">
+	<h3>这里是设置整个页面都可以右键自定义菜单。body:2000px;撑出滚动条</h3>
+	<div id="contextmenu">
+		<h4>菜单项1</h4>
+		<h4>菜单项2</h4>
+		<h4>菜单项3</h4>
+		<h4 style="margin-bottom: -1px;border-bottom-right-radius:.25rem;border-bottom-left-radius:.25rem">菜单项4</h4>
+	</div>
+	<h2>啦啦啦，我是参照物</h2>
+	<script type="text/javascript">
+		
+		var obj = document.getElementsByTagName("h3")[0];
+		var contextmenu = document.getElementById('contextmenu');
+		var contextmenuHeigth = contextmenu.offsetWidth ;
+		window.oncontextmenu = function (ev) {
+			ev = ev || window.event;
+			contextmenu.style.display="block";
+			contextmenu.style.left = ev.clientX + "px";
+			
+			document.body.style.overflowY="hidden";
+			document.body.style.paddingRight="17px";
+			if (window.innerHeight - ev.clientY >= contextmenu.offsetHeight) {
+				console.log("sdfay")
+				contextmenu.style.top = ev.clientY + "px";
+				console.log(contextmenu.style.top)
+			}
+			else {
+				contextmenu.style.top = ev.clientY - contextmenu.offsetHeight + "px";
+				console.log(contextmenu.style.top)
+			}
+			return false;
+		}
+		contextmenu.onclick = function (ev) {
+			ev = ev || window.event;
+			ev.stopPropagation()
+			alert(ev.target.innerText)
+		}
+		window.onclick = function () {
+			contextmenu.style.display = "none";
+			document.body.style.overflowY="scroll";
+			document.body.style.paddingRight="0";
+		}
+
+	
+	</script>
+</body>
+</html>
